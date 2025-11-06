@@ -3,8 +3,8 @@ import {
   BatteryMedium,
   BatteryFull,
   BatteryWarning,
-} from 'lucide-react';
-import { BatteryState } from '../battery';
+} from "lucide-react";
+import { BatteryState } from "../battery";
 
 export default function BatteryIcon({ battery }: { battery: BatteryState }) {
   if (battery.currentCharge === 0) {
@@ -17,6 +17,6 @@ export default function BatteryIcon({ battery }: { battery: BatteryState }) {
   } else if (battery.currentCharge === battery.currentCapacity) {
     return <BatteryFull className="w-1/3 h-auto block mx-auto" />;
   } else {
-    <BatteryWarning className="w-1/3 h-auto block mx-auto" />;
+    return <BatteryWarning className="w-1/3 h-auto block mx-auto" />;
   }
 }
