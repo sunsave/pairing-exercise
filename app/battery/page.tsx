@@ -1,11 +1,12 @@
-import Link from 'next/link';
-import { batteries } from './batteries';
+import Link from "next/link";
+import { get } from "./actions";
 
-export default function Home() {
+export default async function BatteriesPage() {
+  const batteries = await get();
   return (
     <main className="min-h-screen p-8 space-y-4">
       <ul>
-        {Object.entries(batteries).map(([id, _battery]) => (
+        {batteries.map((id) => (
           <li key={id}>
             <Link className="underline text-blue-600" href={`/battery/${id}`}>
               {id}
