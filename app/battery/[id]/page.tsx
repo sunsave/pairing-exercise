@@ -1,5 +1,5 @@
-import { get } from './actions';
-import Battery from './battery';
+import { get } from "./actions";
+import Battery from "./_components/battery";
 
 export default async function BatteryPage({
   params,

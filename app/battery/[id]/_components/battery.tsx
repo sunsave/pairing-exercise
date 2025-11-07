@@ -1,9 +1,9 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { BatteryState } from "../battery";
+import { BatteryState } from "../../_lib/battery";
 import BatteryIcon from "./icon";
-import { charge, discharge } from "./actions";
+import { charge, discharge } from "../actions";
 
 export default function Battery({
   battery,

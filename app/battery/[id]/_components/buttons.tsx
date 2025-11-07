@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useRef } from 'react';
-import { charge, discharge } from './actions';
+import { useRef } from "react";
+import { charge, discharge } from "../actions";
 
 export default function BatteryButtons({ id }: { id: string }) {
   const input = useRef<HTMLInputElement>(null);

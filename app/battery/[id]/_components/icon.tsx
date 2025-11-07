@@ -4,7 +4,7 @@ import {
   BatteryFull,
   BatteryWarning,
 } from "lucide-react";
-import { BatteryState } from "../battery";
+import { BatteryState } from "../../_lib/battery";
 
 export default function BatteryIcon({ battery }: { battery: BatteryState }) {
   if (battery.currentCharge === 0) {

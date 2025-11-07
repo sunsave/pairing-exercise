@@ -1,7 +1,7 @@
 "use server";
 
-import { batteries } from "../batteries";
-import { BatteryState } from "../battery";
+import { batteries } from "../_lib/batteries";
+import { BatteryState } from "../_lib/battery";
 
 export async function get(id: string): Promise<BatteryState> {
   const battery = batteries[id];
