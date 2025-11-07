@@ -2,8 +2,8 @@
 
 import { useRef, useState } from "react";
 import { BatteryState } from "../../_lib/battery";
-import BatteryIcon from "./icon";
 import { charge, discharge } from "../actions";
+import BatteryIcon from "./icon";
 
 export default function Battery({
   battery,
@@ -14,7 +14,6 @@ export default function Battery({
 }) {
   const [batteryState, setBatteryState] = useState<BatteryState>(battery);
   const input = useRef<HTMLInputElement>(null);
-  if (!battery) return null; // Hack to fix server rendering error
 
   return (
     <div className="space-y-4">
