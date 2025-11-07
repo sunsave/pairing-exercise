@@ -13,6 +13,7 @@ export default function Battery({
   id: string;
 }) {
   const [batteryState, setBatteryState] = useState<BatteryState>(battery);
+  console.log({ batteryState, battery });
   const input = useRef<HTMLInputElement>(null);
   if (!battery) return null; // Hack to fix server rendering error
 

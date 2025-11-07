@@ -1,5 +1,5 @@
-import { get } from './actions';
-import Battery from './battery';
+import { get } from "./actions";
+import Battery from "./battery";
 
 export default async function BatteryPage({
   params,
@@ -8,6 +8,7 @@ export default async function BatteryPage({
 }) {
   const { id } = await params;
   const battery = await get(id);
+  console.log("battery on page", { battery });
 
   return (
     <main className="px-8 min-h-screen">

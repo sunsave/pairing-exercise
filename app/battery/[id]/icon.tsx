@@ -7,6 +7,7 @@ import {
 import { BatteryState } from "../battery";
 
 export default function BatteryIcon({ battery }: { battery: BatteryState }) {
+  console.log({ battery });
   if (battery.currentCharge === 0) {
     return <BatteryEmpty className="w-1/3 h-auto block mx-auto" />;
   } else if (
