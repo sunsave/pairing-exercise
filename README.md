@@ -1,3 +1,25 @@
 # Sunsave pairing exercise
 
-Can use [this Stackblitz project](https://stackblitz.com/edit/stackblitz-starters-tyr9qjld) as a fallback.
+## Set up
+
+Install dependencies:
+
+```
+npm i
+```
+
+## Running the development server
+
+The following command will run the local development server on port 3000:
+
+```
+npm run dev
+```
+
+## Running tests
+
+All tests can be run by using:
+
+```
+npm run test
+```
