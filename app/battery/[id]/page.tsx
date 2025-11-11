@@ -1,4 +1,4 @@
-import { get } from "./actions";
+import { get } from "@/app/actions";
 import Battery from "./_components/battery";
 
 export default async function BatteryPage({
