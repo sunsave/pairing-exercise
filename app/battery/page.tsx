@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getAll } from "../actions";
+import { getAll } from "@/app/actions";
 
 export default async function BatteriesPage() {
   const batteries = await getAll();
