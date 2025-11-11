@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { BatteryState } from "../../_lib/battery";
-import { charge, discharge } from "../actions";
+import { charge, discharge } from "@/app/actions";
 import BatteryIcon from "./icon";
 
 export default function Battery({
