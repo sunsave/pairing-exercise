@@ -1,6 +1,6 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
+import { refresh } from "next/cache";
 import { batteries } from "./battery/_lib/batteries";
 import { BatteryState } from "./battery/_lib/battery";
 
@@ -22,7 +22,7 @@ export async function charge(
 ): Promise<BatteryState> {
   const battery = batteries[id];
   battery.charge(Number(amount));
-  revalidatePath("/battery/[id]");
+  refresh();
   return {
     currentCapacity: battery.currentCapacity,
     currentCharge: battery.currentCharge,
@@ -35,7 +35,7 @@ export async function discharge(
 ): Promise<BatteryState> {
   const battery = batteries[id];
   battery.discharge(Number(amount));
-  revalidatePath("/battery/[id]");
+  refresh();
   return {
     currentCapacity: battery.currentCapacity,
     currentCharge: battery.currentCharge,
