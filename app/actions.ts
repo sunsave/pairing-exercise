@@ -1,8 +1,8 @@
 "use server";
 
 import { refresh } from "next/cache";
-import { batteries } from "./battery/_lib/batteries";
-import { BatteryState } from "./battery/_lib/battery";
+import { batteries } from "./batteries/_lib/batteries";
+import { BatteryState } from "./batteries/_lib/battery";
 
 export async function getAll(): Promise<string[]> {
   return Object.keys(batteries);
