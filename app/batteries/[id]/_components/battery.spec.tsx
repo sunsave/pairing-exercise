@@ -1,8 +1,8 @@
 import "@testing-library/jest-dom";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import Battery from "./battery";
 import * as actions from "../actions";
+import Battery from "./battery";
 
 jest.mock("../actions");
 
