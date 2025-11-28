@@ -1,10 +1,18 @@
+import * as actions from "@/app/actions";
 import "@testing-library/jest-dom";
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import * as actions from "../actions";
 import Battery from "./battery";
 
-jest.mock("../actions");
+jest.mock("@/app/actions", () => ({
+  charge: jest.fn(),
+  discharge: jest.fn(),
+}));
+const mockActions = jest.mocked(actions);
+
+beforeEach(() => {
+  jest.resetAllMocks();
+});
 
 it("displays the capacity and charge", () => {
   render(
@@ -17,13 +25,8 @@ it("displays the capacity and charge", () => {
   expect(screen.getByText("4000 Wh")).toBeInTheDocument();
 });
 
-it("updates charge when charge button is clicked", async () => {
+it("calls charge server action when charge button is clicked", async () => {
   const user = userEvent.setup();
-  const mockCharge = jest.mocked(actions.charge);
-  mockCharge.mockResolvedValue({
-    currentCapacity: 4000,
-    currentCharge: 1500,
-  });
 
   render(
     <Battery
@@ -34,20 +37,15 @@ it("updates charge when charge button is clicked", async () => {
 
   const input = screen.getByPlaceholderText("Amount");
   const chargeButton = screen.getByRole("button", { name: "Charge" });
-
   await user.type(input, "500");
   await user.click(chargeButton);
 
-  await waitFor(() => {
-    expect(screen.getByText("1500 Wh")).toBeInTheDocument();
-  });
-  expect(mockCharge).toHaveBeenCalledWith("test-id", 500);
+  expect(mockActions.charge).toHaveBeenCalledWith("test-id", 500);
 });
 
 it("updates charge when discharge button is clicked", async () => {
   const user = userEvent.setup();
-  const mockDischarge = jest.mocked(actions.discharge);
-  mockDischarge.mockResolvedValue({
+  mockActions.discharge.mockResolvedValue({
     currentCapacity: 4000,
     currentCharge: 500,
   });
@@ -61,12 +59,8 @@ it("updates charge when discharge button is clicked", async () => {
 
   const input = screen.getByPlaceholderText("Amount");
   const dischargeButton = screen.getByRole("button", { name: "Discharge" });
-
   await user.type(input, "500");
   await user.click(dischargeButton);
 
-  await waitFor(() => {
-    expect(screen.getByText("500 Wh")).toBeInTheDocument();
-  });
-  expect(mockDischarge).toHaveBeenCalledWith("test-id", 500);
+  expect(mockActions.discharge).toHaveBeenCalledWith("test-id", 500);
 });

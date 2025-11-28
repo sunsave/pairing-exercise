@@ -1,9 +1,9 @@
 "use client";
 
-import { useRef, useState } from "react";
-import { charge, discharge } from "../actions";
-import BatteryIcon from "./icon";
+import { useRef } from "react";
 import { BatteryState } from "../../_lib/battery";
+import { charge, discharge } from "@/app/actions";
+import BatteryIcon from "./icon";
 
 export default function Battery({
   battery,
@@ -12,25 +12,24 @@ export default function Battery({
   battery: BatteryState;
   id: string;
 }) {
-  const [batteryState, setBatteryState] = useState<BatteryState>(battery);
   const input = useRef<HTMLInputElement>(null);
 
   return (
     <div className="space-y-4">
       <div>
-        <BatteryIcon battery={batteryState} />
+        <BatteryIcon battery={battery} />
         <table className="relative border-collapse w-full text-sm font-mono">
           <tbody>
             <tr>
               <th className="p-2 w-1/2 text-right">Charge</th>
               <td className="p-2 w-1/2 text-left">
-                {batteryState.currentCharge} Wh
+                {battery.currentCharge} Wh
               </td>
             </tr>
             <tr>
               <th className="p-2 text-right w-1/2">Capacity</th>
               <td className="p-2 text-left w-1/2">
-                {batteryState.currentCapacity} Wh
+                {battery.currentCapacity} Wh
               </td>
             </tr>
           </tbody>
@@ -48,8 +47,7 @@ export default function Battery({
         <button
           className="border-2 border-black rounded-full px-4 py-2 font-bold bg-emerald-300"
           onClick={async () => {
-            const state = await charge(id, Number(input.current?.value) || 0);
-            setBatteryState(state);
+            await charge(id, Number(input.current?.value) || 0);
           }}
         >
           Charge
@@ -57,11 +55,7 @@ export default function Battery({
         <button
           className="border-2 border-black rounded-full px-4 py-2 font-bold bg-rose-300"
           onClick={async () => {
-            const state = await discharge(
-              id,
-              Number(input.current?.value) || 0
-            );
-            setBatteryState(state);
+            await discharge(id, Number(input.current?.value) || 0);
           }}
         >
           Discharge
