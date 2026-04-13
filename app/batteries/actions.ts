@@ -1,5 +1,6 @@
 "use server";
 
+import { refresh } from "next/cache";
 import { batteries } from "./_lib/batteries";
 import { BatteryState } from "./_lib/battery";
 
@@ -20,7 +21,8 @@ export async function charge(
   amount: number,
 ): Promise<BatteryState> {
   const battery = batteries[id];
-  battery.charge(amount);
+  battery.charge(Number(amount));
+  refresh();
   return {
     currentCapacity: battery.currentCapacity,
     currentCharge: battery.currentCharge,
@@ -32,7 +34,8 @@ export async function discharge(
   amount: number,
 ): Promise<BatteryState> {
   const battery = batteries[id];
-  battery.discharge(amount);
+  battery.discharge(Number(amount));
+  refresh();
   return {
     currentCapacity: battery.currentCapacity,
     currentCharge: battery.currentCharge,
