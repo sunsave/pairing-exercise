@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { charge, discharge } from "../actions";
+import { charge, discharge } from "../../actions";
 import BatteryIcon from "./icon";
 import { BatteryState } from "../../_lib/battery";
 
@@ -59,7 +59,7 @@ export default function Battery({
           onClick={async () => {
             const state = await discharge(
               id,
-              Number(input.current?.value) || 0
+              Number(input.current?.value) || 0,
             );
             setBatteryState(state);
           }}

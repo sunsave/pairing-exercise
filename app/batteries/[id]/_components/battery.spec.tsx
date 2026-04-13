@@ -1,17 +1,17 @@
 import "@testing-library/jest-dom";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import * as actions from "../actions";
+import * as actions from "../../actions";
 import Battery from "./battery";
 
-jest.mock("../actions");
+jest.mock("../../actions");
 
 it("displays the capacity and charge", () => {
   render(
     <Battery
       battery={{ currentCapacity: 4000, currentCharge: 1000 }}
       id="test-id"
-    />
+    />,
   );
   expect(screen.getByText("1000 Wh")).toBeInTheDocument();
   expect(screen.getByText("4000 Wh")).toBeInTheDocument();
@@ -29,7 +29,7 @@ it("updates charge when charge button is clicked", async () => {
     <Battery
       battery={{ currentCapacity: 4000, currentCharge: 1000 }}
       id="test-id"
-    />
+    />,
   );
 
   const input = screen.getByPlaceholderText("Amount");
@@ -56,7 +56,7 @@ it("updates charge when discharge button is clicked", async () => {
     <Battery
       battery={{ currentCapacity: 4000, currentCharge: 1000 }}
       id="test-id"
-    />
+    />,
   );
 
   const input = screen.getByPlaceholderText("Amount");

@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { get } from "./actions";
+import { list } from "./actions";
 
 export default async function BatteriesPage() {
-  const batteries = await get();
+  const batteries = await list();
   return (
     <main className="min-h-screen p-8 space-y-4">
       <ul>
